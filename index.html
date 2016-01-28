@@ -20,6 +20,14 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
 
   <!-- Tells the browser what the title of this page should be. -->
   <title>Resume</title>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
   <!-- Load the page styles. -->
   <link href="css/style.css" rel="stylesheet">
@@ -46,42 +54,68 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   Uncomment the <script> tag below when you're ready to add an interactive
   Google Map to your resume!
   -->
-<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script> -->
+  <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBYW9s9IyIw2dLGL-Q5nAc2NQjmqQZLCas"></script>
 
   <meta name="viewport" content="width=device-width">
 </head>
 <body>
-  <div id="main">
-    Hello world!   <!-- You'll be deleting this line in the course -->
-
-    <!--
-    Everything from here to the <script> tag below is the skeleton of your
-    website. Your code will add information to each of the sections of the
-    resume below. You can pretty easily figure out what each section will
-    display by looking at the id or at what's written between the <h2> tags.
-    -->
-    <div id="header" class="center-content clear-fix">
-      <ul id="topContacts" class="flex-box"></ul>
-    </div>
-    <div style="clear: both;"></div>
-    <div id="workExperience" class="gray">
-      <h2>Work Experience</h2>
-    </div>
-    <div id="projects">
-      <h2>Projects</h2>
-    </div>
-    <div id="education" class="gray">
-      <h2>Education</h2>
-    </div>
-    <div id="mapDiv">
-      <h2>Where I've Lived and Worked</h2>
-    </div>
-    <div id="lets-connect" class="dark-gray">
-      <h2 class="orange center-text">Let's Connect</h2>
-        <ul id="footerContacts" class="flex-box">
-      </ul>
+<header>
+  <div id="header" class="center-content clear-fix">
+    <div class="container">
+      <div id="profile"></div>
+      <div id="topContacts" class="flex-box"></div>
     </div>
   </div>
+  <div style="clear: both;"></div>
+</header>
+  <main>
+    <div class="container">
+      <div id="main">
+
+          <!--
+          Everything from here to the <script> tag below is the skeleton of your
+          website. Your code will add information to each of the sections of the
+          resume below. You can pretty easily figure out what each section will
+          display by looking at the id or at what's written between the <h2> tags.
+        -->
+        <div id="workExperience" class="gray row">
+          <div class="col s12">
+            <h2>Work Experience</h2>
+          </div>
+          <div id="workExperienceContent">
+          </div>
+        </div>
+        <div id="projects" class="row">
+          <div class="col s12">
+            <h2>Projects</h2>
+          </div>
+          <div id="projectsContent">
+          </div>
+        </div>
+        <div id="education" class="gray row">
+          <div class="col s12">
+            <h2>Education</h2>
+          </div>
+          <div class="educationContent">
+          </div>
+        </div>
+        <div id="mapDiv" class="row">
+          <h2>Where I've Lived and Worked</h2>
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="content">
+      <div id="lets-connect" class="dark-gray">
+        <h2 class="orange center-text">Let's Connect</h2>
+        <div class="container">
+          <div id="footerContacts" class="flex-box"></div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <!--
   The next line tells the browser where to download the JavaScript file you'll be
@@ -136,5 +170,6 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
       document.getElementById('mapDiv').style.display = 'none';
     }
   </script>
+
 </body>
 </html>

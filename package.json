@@ -1,0 +1,29 @@
+{
+  "name": "frontend-nanodegree-resume",
+  "version": "1.0.0",
+  "description": "1. Go to the [Javascript Basics course](https://www.udacity.com/course/ud804) and select \"View Course Materials.\"\r 2. Go through the videos and assignments in this course to learn the JavaScript necessary to build your resume.\r 3. Review your work against the Project Rubric (on the next page).\r 4. When you are satisfied with your project, submit it according to the Submission Instructions on the next page.",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "./node_modules/.bin/webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattdharmon/frontend-nanodegree-resume.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattdharmon/frontend-nanodegree-resume/issues"
+  },
+  "homepage": "https://github.com/mattdharmon/frontend-nanodegree-resume#readme",
+  "dependencies": {
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "webpack-stream": "^3.1.0"
+  }
+}
