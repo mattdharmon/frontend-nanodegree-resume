@@ -1,5 +1,7 @@
-var React = require('react');
-var _ = require('lodash');
+var React = require('react'),
+    _ = require('lodash'),
+    ReactDOM = require('react-dom'),
+    resumeData = require('./../resources/data/resumeData.jsx');
 
 // The list item for each contact.
 var ContactItemComponent = React.createClass({
@@ -14,7 +16,7 @@ var ContactItemComponent = React.createClass({
 });
 
 // The Contacts themselves.
-module.exports = React.createClass({
+var ContactComponent = React.createClass({
   render() {
     var contactNodes = _.map(this.props, (contact) => {
       return (
@@ -28,3 +30,16 @@ module.exports = React.createClass({
     );
   }
 });
+
+// Render!
+ReactDOM.render(
+    <ContactComponent {...resumeData.profile.contact_info} />,
+    document.getElementById('topContacts')
+);
+
+ReactDOM.render(
+    <ContactComponent {...resumeData.profile.contact_info} />,
+    document.getElementById('footerContacts')
+);
+
+module.exports = ContactComponent;

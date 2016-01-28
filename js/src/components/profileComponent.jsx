@@ -1,6 +1,9 @@
-import React from 'react';
+var React = require('react'),
+    ReactDOM = require('react-dom'),
+    resumeData = require('./../resources/data/resumeData.jsx');
 
-module.exports = React.createClass({
+// Build the Profile Section.
+var ProfileComponent = React.createClass({
   render() {
     return (
       <div>
@@ -10,3 +13,11 @@ module.exports = React.createClass({
     );
   }
 });
+
+// Render!
+ReactDOM.render(
+    <ProfileComponent {...resumeData.profile} />,
+    document.getElementById('profile')
+);
+
+module.exports = ProfileComponent;
