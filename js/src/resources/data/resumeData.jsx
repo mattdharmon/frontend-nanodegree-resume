@@ -12,6 +12,8 @@ exports.profile = {
     city: "Cottage Grove",
     state: "Wisconsin"
   },
+  biopic: "images/my_picture.jpg",
+  welcome_message: "If you're good at something, never do it for free.",
   contact_info: [
     {
       id: 1,
@@ -23,6 +25,32 @@ exports.profile = {
       type: "Email",
       detail: "email@mailinator.com"
     }
+  ],
+  skills: [
+    {
+      id: 1,
+      skill: "Web Development",
+    },
+    {
+      id: 2,
+      skill: "Android Development",
+    },
+    {
+      id: 3,
+      skill: "PHP",
+    },
+    {
+      id: 4,
+      skill: "ASP.NET",
+    },
+    {
+      id: 5,
+      skill: "Java",
+    },
+    {
+      id: 6,
+      skill: "Linux",
+    },
   ]
 };
 exports.experience = [

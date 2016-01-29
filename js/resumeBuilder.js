@@ -32080,6 +32080,8 @@
 	    city: "Cottage Grove",
 	    state: "Wisconsin"
 	  },
+	  biopic: "images/my_picture.jpg",
+	  welcome_message: "If you're good at something, never do it for free.",
 	  contact_info: [{
 	    id: 1,
 	    type: "Mobile",
@@ -32088,6 +32090,25 @@
 	    id: 2,
 	    type: "Email",
 	    detail: "email@mailinator.com"
+	  }],
+	  skills: [{
+	    id: 1,
+	    skill: "Web Development"
+	  }, {
+	    id: 2,
+	    skill: "Android Development"
+	  }, {
+	    id: 3,
+	    skill: "PHP"
+	  }, {
+	    id: 4,
+	    skill: "ASP.NET"
+	  }, {
+	    id: 5,
+	    skill: "Java"
+	  }, {
+	    id: 6,
+	    skill: "Linux"
 	  }]
 	};
 	exports.experience = [{
@@ -32206,14 +32227,36 @@
 
 	'use strict';
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var React = __webpack_require__(1),
 	    ReactDOM = __webpack_require__(158),
+	    _ = __webpack_require__(159),
 	    resumeData = __webpack_require__(161);
+
+	var SkillItem = React.createClass({
+	  displayName: 'SkillItem',
+	  render: function render() {
+	    return React.createElement(
+	      'li',
+	      { className: 'flex-item' },
+	      React.createElement(
+	        'span',
+	        { className: 'white-text' },
+	        this.props.skill
+	      )
+	    );
+	  }
+	});
 
 	// Build the Profile Section.
 	var ProfileComponent = React.createClass({
 	  displayName: 'ProfileComponent',
 	  render: function render() {
+	    // get the list of skills.
+	    var skills = _.map(this.props.skills, function (skill) {
+	      return React.createElement(SkillItem, _extends({ key: skill.id }, skill));
+	    });
 	    return React.createElement(
 	      'div',
 	      null,
@@ -32229,7 +32272,24 @@
 	        null,
 	        this.props.title
 	      ),
-	      React.createElement('hr', null)
+	      React.createElement('hr', null),
+	      React.createElement('div', { id: 'topContacts', className: 'flex-box' }),
+	      React.createElement('img', { src: this.props.biopic, className: 'biopic' }),
+	      React.createElement(
+	        'span',
+	        { className: 'welcome-message' },
+	        this.props.welcome_message
+	      ),
+	      React.createElement(
+	        'h3',
+	        { id: 'skills-h3' },
+	        'Skills at a Glance:'
+	      ),
+	      React.createElement(
+	        'ul',
+	        { id: 'skills', className: 'flex-box' },
+	        skills
+	      )
 	    );
 	  }
 	});
