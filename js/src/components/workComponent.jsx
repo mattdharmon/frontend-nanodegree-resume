@@ -1,7 +1,9 @@
+// <reference path="typings/node/node.d.ts"/>
+// <reference path="typings/react/react.d.ts"/>
 var React = require('react'),
-    _ = require('lodash'),
-    ReactDOM = require('react-dom'),
-    resumeData = require('./../resources/data/resumeData.jsx');
+    _ = require('lodash');
+
+var props;
 
 // The Responsibility list items.
 var ResponsibilityItemComponent = React.createClass({
@@ -38,6 +40,9 @@ var WorkItemComponent = React.createClass({
 
 // The Work Section.
 var WorkComponent = React.createClass({
+  getIntialState() {
+
+  },
   render() {
     var workNodes = _.map(this.props, (work) => {
       return (
@@ -51,11 +56,5 @@ var WorkComponent = React.createClass({
     );
   }
 });
-
-// Render
-ReactDOM.render(
-    <WorkComponent {...resumeData.experience} />,
-    document.getElementById('workExperienceContent')
-);
 
 module.exports = WorkComponent;

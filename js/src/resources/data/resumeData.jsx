@@ -1,3 +1,4 @@
+var moment = require('moment');
 /**
  * This will simulate the data returned from an API endpoint.
  * @TODO: This should be stored in a database and have an API service wrapped around it.
@@ -24,7 +25,12 @@ exports.profile = {
       id: 2,
       type: "Email",
       detail: "email@mailinator.com"
-    }
+    },
+    {
+      id: 3,
+      type: "Location",
+      detail: "Cottage Grove, Wisconsin"
+    },
   ],
   skills: [
     {
@@ -58,7 +64,7 @@ exports.experience = [
     id: 1,
     company: "Hardin Design and Development",
     title: "Web Developer",
-    start_date: new Date(2015, 10).toDateString(),
+    start_date: moment(new Date(2015, 10)).format('MMM, Qo'),
     end_date: "Present",
     location: {
       city: "Madison",
@@ -101,8 +107,8 @@ exports.experience = [
     id: 2,
     company: "InfoSec Institute",
     title: "Web Developer",
-    start_date: new Date(2015, 1).toDateString(),
-    end_date: new Date(2015, 9).toDateString(),
+    start_date: moment(new Date(2015, 1)).format('MMM, Qo'),
+    end_date: moment(new Date(2015, 9)).format('MMM, Qo'),
     location: {
       city: "Madison",
       state: "Wisconsin"
@@ -148,12 +154,12 @@ exports.experience = [
     id: 3,
     company: "Johnson Health Tech",
     title: "Web Developer",
-    start_date: new Date(2013, 2).toDateString(),
+    start_date: moment(new Date(2013, 9)).format('MMM, Qo'),
+    end_date: moment(new Date(2015, 1)).format('MMM, Qo'),
     location: {
       city: "Cottage Grove",
       state: "Wisconsin"
     },
-    end_date: new Date(2015, 1).toDateString(),
     street: "",
     website: "https://www.johnsonfit.com/",
     responsibilities: [
@@ -192,3 +198,35 @@ exports.experience = [
     ]
   }
 ];
+
+exports.education = {
+  schools: [
+    {
+      id: 1,
+      name: "Madison Area Technical College",
+      location: "Madison, WI",
+      degree: 'Certificate',
+      dates: "December, 2012",
+      url: "http://madisoncollege.edu/",
+      majors: [
+        {
+          id: 1,
+          degree: "IT - Microsoft Visual Studio.NET"
+        },
+        {
+          id: 2,
+          degree: "IT - Professional Developer Java Certificate"
+        }
+      ]
+    }
+  ],
+  onlineCourses: [
+    {
+      id: 1,
+      title: "Front End Developer Nanodegree",
+      school: "Udactiy",
+      date: "January 2016 - Present",
+      url: "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
+    }
+  ]
+};

@@ -1,7 +1,5 @@
 var React = require('react'),
-    ReactDOM = require('react-dom'),
-    _ = require('lodash'),
-    resumeData = require('./../resources/data/resumeData.jsx');
+    _ = require('lodash');
 
 var SkillItem = React.createClass({
 
@@ -32,11 +30,5 @@ var ProfileComponent = React.createClass({
     );
   }
 });
-
-// Render!
-ReactDOM.render(
-    <ProfileComponent {...resumeData.profile} />,
-    document.getElementById('profile')
-);
 
 module.exports = ProfileComponent;

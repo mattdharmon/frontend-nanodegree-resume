@@ -9,7 +9,37 @@ var _ = require('lodash'),
 // The Components, require them so that webpack builds them.
 var ProfileComponent = require('./components/profileComponent.jsx'),
     ContactComponent = require('./components/contactComponent.jsx'),
-    WorkComponent = require('./components/workComponent.jsx');
+    WorkComponent = require('./components/workComponent.jsx'),
+    EducationCompnent = require('./components/educationComponent.jsx');
+
+// Render the Profile.
+ReactDOM.render(
+    <ProfileComponent {...resumeData.profile} />,
+    document.getElementById('profile')
+);
+
+// Render the Work Experience.
+ReactDOM.render(
+    <WorkComponent {...resumeData.experience} />,
+    document.getElementById('workExperienceContent')
+);
+
+// Render the contacts top section!
+ReactDOM.render(
+    <ContactComponent {...resumeData.profile.contact_info} />,
+    document.getElementById('topContacts')
+);
+
+// Render the contacts footer section!
+ReactDOM.render(
+    <ContactComponent {...resumeData.profile.contact_info} />,
+    document.getElementById('footerContacts')
+);
+
+ReactDOM.render(
+    <EducationCompnent {...resumeData.education} />,
+    document.getElementById('education')
+);
 
 // Set some global vars (bad practice) so that the helper.js can render the maps.
 window.data = resumeData;
