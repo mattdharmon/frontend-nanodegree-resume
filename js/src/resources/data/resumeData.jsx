@@ -31,6 +31,11 @@ exports.profile = {
       type: "Location",
       detail: "Cottage Grove, Wisconsin"
     },
+    {
+      id: 4,
+      type: "Github",
+      detail: "mattdharmon"
+    }
   ],
   skills: [
     {
@@ -230,3 +235,20 @@ exports.education = {
     }
   ]
 };
+
+exports.projects = [
+  {
+    id: 1,
+    title: "Portfolio",
+    dates: "January 2016",
+    description: "A Udacity project from the Front End Web Developer Nanodegree where we show off the projects that I have done.",
+    images: [
+      {
+        id: 1,
+        url: "images/portfolio.png"
+      }
+    ],
+    url: "https://mattdharmon.github.io/UdacityP1FrontEndProjectPortfolio/"
+  }
+];
+

@@ -53,7 +53,7 @@ var EducationComponent = React.createClass({
       );
     });
     return (
-        <div id="workSection">
+        <div id="educationSection">
           {educationNodes}
           <h3>Online Classes</h3>
           {onlineNodes}

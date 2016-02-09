@@ -58,7 +58,8 @@
 	var ProfileComponent = __webpack_require__(260),
 	    ContactComponent = __webpack_require__(261),
 	    WorkComponent = __webpack_require__(262),
-	    EducationCompnent = __webpack_require__(263);
+	    EducationComponent = __webpack_require__(263),
+	    ProjectComponent = __webpack_require__(264);
 
 	// Render the Profile.
 	ReactDOM.render(React.createElement(ProfileComponent, resumeData.profile), document.getElementById('profile'));
@@ -72,7 +73,10 @@
 	// Render the contacts footer section!
 	ReactDOM.render(React.createElement(ContactComponent, resumeData.profile.contact_info), document.getElementById('footerContacts'));
 
-	ReactDOM.render(React.createElement(EducationCompnent, resumeData.education), document.getElementById('education'));
+	ReactDOM.render(React.createElement(EducationComponent, resumeData.education), document.getElementById('education'));
+
+	// Render the projects.
+	ReactDOM.render(React.createElement(ProjectComponent, resumeData.projects), document.getElementById('projects'));
 
 	// Set some global vars (bad practice) so that the helper.js can render the maps.
 	window.data = resumeData;
@@ -82,19 +86,15 @@
 	        location: data.profile.location.city + ', ' + data.profile.location.state
 	    }
 	};
-	window.education = {
-	    schools: [{
-	        location: data.profile.location.city + ', ' + data.profile.location.state
-	    }]
-	};
-	var workLocations = [];
-	_.reduce(data.experience, function (result, value, key) {
+	window.education = resumeData.education;
+
+	var workLocations = _.reduce(data.experience, function (result, value, key) {
 	    var location = {
 	        location: value.location.city + ', ' + value.location.state
 	    };
 	    result.push(location);
 	    return result;
-	}, workLocations);
+	}, []);
 
 	window.work = {
 	    jobs: workLocations
@@ -32110,6 +32110,10 @@
 	    id: 3,
 	    type: "Location",
 	    detail: "Cottage Grove, Wisconsin"
+	  }, {
+	    id: 4,
+	    type: "Github",
+	    detail: "mattdharmon"
 	  }],
 	  skills: [{
 	    id: 1,
@@ -32265,6 +32269,18 @@
 	    url: "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
 	  }]
 	};
+
+	exports.projects = [{
+	  id: 1,
+	  title: "Portfolio",
+	  dates: "January 2016",
+	  description: "A Udacity project from the Front End Web Developer Nanodegree where we show off the projects that I have done.",
+	  images: [{
+	    id: 1,
+	    url: "images/portfolio.png"
+	  }],
+	  url: "https://mattdharmon.github.io/UdacityP1FrontEndProjectPortfolio/"
+	}];
 
 /***/ },
 /* 162 */
@@ -45385,7 +45401,7 @@
 	    });
 	    return React.createElement(
 	      'div',
-	      { id: 'workSection' },
+	      { id: 'educationSection' },
 	      educationNodes,
 	      React.createElement(
 	        'h3',
@@ -45398,6 +45414,83 @@
 	});
 
 	module.exports = EducationComponent;
+
+/***/ },
+/* 264 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var React = __webpack_require__(1),
+	    _ = __webpack_require__(159);
+
+	var ProjectImageItemComponent = React.createClass({
+	  displayName: 'ProjectImageItemComponent',
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'col l3 m6 s12' },
+	      React.createElement('img', { className: 'responsive-img', src: this.props.image })
+	    );
+	  }
+	});
+
+	var ProjectItemComponent = React.createClass({
+	  displayName: 'ProjectItemComponent',
+	  render: function render() {
+
+	    // Render each image component.
+	    var images = _.map(this.props.images, function (image) {
+	      return React.createElement(ProjectImageItemComponent, { key: image.id, image: image.url });
+	    });
+
+	    return React.createElement(
+	      'div',
+	      { className: 'project-entry' },
+	      React.createElement(
+	        'a',
+	        { href: this.props.url },
+	        this.props.title
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'date-text' },
+	        this.props.dates
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        React.createElement('br', null),
+	        this.props.description
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        images
+	      )
+	    );
+	  }
+	});
+
+	var ProjectComponent = React.createClass({
+	  displayName: 'ProjectComponent',
+	  render: function render() {
+	    // Render each project.
+	    var projects = _.map(this.props, function (project) {
+	      return React.createElement(ProjectItemComponent, _extends({ key: project.id }, project));
+	    });
+
+	    return React.createElement(
+	      'div',
+	      { id: 'projectsSection' },
+	      projects
+	    );
+	  }
+	});
+
+	module.exports = ProjectComponent;
 
 /***/ }
 /******/ ]);

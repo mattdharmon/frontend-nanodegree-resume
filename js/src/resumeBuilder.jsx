@@ -10,7 +10,8 @@ var _ = require('lodash'),
 var ProfileComponent = require('./components/profileComponent.jsx'),
     ContactComponent = require('./components/contactComponent.jsx'),
     WorkComponent = require('./components/workComponent.jsx'),
-    EducationCompnent = require('./components/educationComponent.jsx');
+    EducationComponent = require('./components/educationComponent.jsx'),
+    ProjectComponent = require('./components/projectsComponent.jsx');
 
 // Render the Profile.
 ReactDOM.render(
@@ -37,8 +38,14 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-    <EducationCompnent {...resumeData.education} />,
+    <EducationComponent {...resumeData.education} />,
     document.getElementById('education')
+);
+
+// Render the projects.
+ReactDOM.render(
+    <ProjectComponent {...resumeData.projects} />,
+    document.getElementById('projects')
 );
 
 // Set some global vars (bad practice) so that the helper.js can render the maps.
@@ -49,21 +56,15 @@ window.bio = {
     location: `${data.profile.location.city}, ${data.profile.location.state}`
   }
 };
-window.education = {
-  schools: [
-    {
-      location: `${data.profile.location.city}, ${data.profile.location.state}`
-    }
-  ]
-};
-var workLocations = [];
-_.reduce(data.experience, (result, value, key) => {
+window.education = resumeData.education;
+
+var workLocations = _.reduce(data.experience, (result, value, key) => {
   var location = {
     location: value.location.city + ', ' + value.location.state
   };
   result.push(location);
   return result;
-}, workLocations);
+}, []);
 
 window.work = {
   jobs: workLocations
