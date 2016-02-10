@@ -39,13 +39,13 @@ ReactDOM.render(
 
 ReactDOM.render(
     <EducationComponent {...resumeData.education} />,
-    document.getElementById('education')
+    document.getElementById('educationContent')
 );
 
 // Render the projects.
 ReactDOM.render(
     <ProjectComponent {...resumeData.projects} />,
-    document.getElementById('projects')
+    document.getElementById('projectsContent')
 );
 
 // Set some global vars (bad practice) so that the helper.js can render the maps.
