@@ -3,8 +3,6 @@
 var React = require('react'),
     _ = require('lodash');
 
-var props;
-
 // The Responsibility list items.
 var ResponsibilityItemComponent = React.createClass({
   render() {

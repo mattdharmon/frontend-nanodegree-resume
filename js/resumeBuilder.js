@@ -5,12 +5,11 @@
  * @type {Array}
  */
 bio = {
-  first_name: "Matthew",
-  last_name: "Harmon",
+  name: "Matthew Harmon",
   title: "Web Developer",
   biopic: "images/my_picture.jpg",
   welcome_message: "If you're good at something, never do it for free.",
-  contact_info: {
+  contacts: {
     mobile: "555-555-5346",
     email: "email@mailinator.com",
     location: "Cottage Grove, Wisconsin",
@@ -20,14 +19,54 @@ bio = {
     "Web Development",
     "Android",
     "PHP",
-     "ASP.NET",
+    "ASP.NET",
     "Java",
     "Linux"
-  ]
+  ],
+  display: function() {
+    var $profile = $(".container #profile");
+
+    // Full Name
+    HTMLheaderName = HTMLheaderName.replace("%data%", this.name);
+    $profile.append(HTMLheaderName);
+    
+    // Title
+    HTMLheaderRole = HTMLheaderRole.replace("%data%", this.title);
+    $profile.append(HTMLheaderRole);
+    
+    // Contacts Section
+    var contacts = "<ul class='flex-box'>"
+    + HTMLmobile.replace("%data%", this.contacts.mobile)
+    + HTMLemail.replace("%data%", this.contacts.email)
+    + HTMLgithub.replace("%data%", this.contacts.github)
+    + HTMLlocation.replace("%data%", this.contacts.location)
+    + "</ul>";
+    var topContacts = "<div id='topContacts' class='flex-box'></div>";
+    $profile.append(topContacts);
+    $("#topContacts").append(contacts);
+    $("#footerContacts").append(contacts);
+    
+    // Biopic
+    HTMLbioPic = HTMLbioPic.replace("%data%", this.biopic);
+    $profile.append(HTMLbioPic);
+    
+    // Welcome Message
+    HTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", this.welcome_message);
+    $profile.append(HTMLwelcomeMsg);
+    
+    // Skills Header
+    $profile.append(HTMLskillsStart);
+    
+    // Skills
+    this.skills.forEach(function(skill) {
+       skill = HTMLskills.replace("%data%", skill);
+       $("#skills").append(skill); 
+    });  
+  }
 };
 
 work = {
-  job: [
+  jobs: [
     {
       employer: "Hardin Design and Development",
       title: "Web Developer",
@@ -88,7 +127,7 @@ work = {
     {
       employer: "Johnson Health Tech",
       title: "Web Developer",
-      start_date: "September 2013 - January 2015",
+      dates: "September 2013 - January 2015",
       location: "Cottage Grove, Wisconsin",
       website: "https://www.johnsonfit.com/",
       description: [
@@ -118,7 +157,34 @@ work = {
         }
       ]
     }
-  ]
+  ],
+  display: function() {
+    var $work = $("#workExperienceContent");
+    
+    // Loop through the jobs and display it.
+    this.jobs.forEach(function(job, index) {
+      // Create a new work entry.
+      $work.append(HTMLworkStart);
+      var $workEntry = $(".work-entry:last");
+    
+      // Employer.
+      var jobHeader = HTMLworkEmployer.replace("%data%", job.employer)
+        + HTMLworkTitle.replace("%data%", job.title);
+      $workEntry.append(jobHeader);
+    
+      // Work dates.
+      $workEntry.append(HTMLworkDates.replace("%data%", job.dates));
+    
+      // Work Location.
+      $workEntry.append(HTMLworkLocation.replace("%data%", job.location));
+    
+      // Work Details.
+      $workEntry.append("<br />");
+      job.description.forEach(function(desc) {
+        $workEntry.append(HTMLworkDescription.replace("%data%", desc.responsibility));
+      });
+    });
+  }
 };
 
 education = {
@@ -130,36 +196,109 @@ education = {
       dates: "December, 2012",
       url: "http://madisoncollege.edu/",
       majors: [
-        {
-          degree: "IT - Microsoft Visual Studio.NET"
-        },
-        {
-          degree: "IT - Professional Developer Java Certificate"
-        }
+        "IT - Microsoft Visual Studio.NET Certificate",
+        "IT - Professional Developer Java Certificate"
       ]
     }
   ],
   onlineCourses: [
     {
-
       title: "Front End Developer Nanodegree",
       school: "Udactiy",
-      date: "January 2016 - Present",
+      dates: "January 2016 - Present",
       url: "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
     }
-  ]
+  ],
+  display: function() {
+    var $school = $("#educationContent");
+    
+    // Physical Schools.
+    this.schools.forEach(function(school) {
+      // Create a new education entry.
+      $school.append(HTMLschoolStart);
+      var $entry = $(".education-entry:last");
+      
+      // School Name w/Degree Header
+      var header = HTMLschoolName.replace("%data%", school.name)
+        + HTMLschoolDegree.replace("%data%", school.degree);
+      $entry.append(header);
+      
+      // Dates
+      $entry.append(HTMLschoolDates.replace("%data%", school.dates));
+      
+      // Location
+      $entry.append(HTMLschoolLocation.replace("%data%", school.location));
+      
+      // Majors
+      school.majors.forEach(function(major) {
+        $entry.append(HTMLschoolMajor.replace("%data%", major));
+      });
+    });
+    
+    // Online Schools.
+    $school.append(HTMLonlineClasses);
+    this.onlineCourses.forEach(function(school) {
+      // Create new Online Entry
+      $school.append(HTMLschoolStart);
+      var $entry = $(".education-entry:last");
+      
+      // Title w/SchoolName for header.
+      var header = HTMLonlineTitle.replace("%data%", school.title)
+        + HTMLonlineSchool.replace("%data%", school.school);
+      $entry.append(header);
+      
+      // Dates
+      $entry.append(HTMLonlineDates.replace("%data%", school.dates));
+      
+      // Website 
+      $entry.append(HTMLonlineURL.replace("%data%", school.url));
+    });
+  }
 };
 
-projects = [
-  {
-    title: "Portfolio",
-    dates: "January 2016",
-    description: "A Udacity project from the Front End Web Developer Nanodegree where we show off the projects that I have done.",
-    images: [
-      {
-        url: "images/portfolio.png"
-      }
-    ],
-    url: "https://mattdharmon.github.io/UdacityP1FrontEndProjectPortfolio/"
+projects = {
+  projects: [
+    {
+      title: "Portfolio",
+      dates: "January 2016",
+      description: "A Udacity project from the Front End Web Developer Nanodegree where we show off the projects that I have done.",
+      images: [
+       "images/portfolio.png"
+      ],
+      url: "https://mattdharmon.github.io/UdacityP1FrontEndProjectPortfolio/"
+    }
+  ],
+  display: function() {
+    var $project = $('#projectsContent');
+    
+    // Loop through projects and append.
+    this.projects.forEach(function(project) {
+      // Create new Online Entry
+      $project.append(HTMLprojectStart);
+      var $entry = $(".project-entry:last");
+      
+      // The title header.
+      $entry.append(HTMLprojectTitle.replace("%data%", project.title));
+      
+      // Dates
+      $entry.append(HTMLprojectDates.replace("%data%", project.dates));
+      
+      // Imgaes.
+      $entry.append("<div class='row image-entry'></div>");
+      var $imageEntry = $(".image-entry:last");
+      project.images.forEach(function(image) {
+        $imageEntry.append(HTMLprojectImage.replace("%data%", image));
+      });
+    });
   }
-];
+};
+
+
+function init() {
+    bio.display();
+    work.display();
+    education.display();
+    projects.display();
+}
+
+init();
